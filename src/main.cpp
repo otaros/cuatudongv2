@@ -54,11 +54,11 @@ void door_state_checking(void* pvParameters) {
   
   while(1) {
     int distance = calculate_distance();
-    switch (distance*1000) {
+    switch (distance) {
       case 0 ... 4:
         closed = true;
         break;
-      case MAX_DISTANCE*1000 ... 1000000:
+      case MAX_DISTANCE ... 1000:
         fully_openned = true;
         break;
       default:
@@ -73,7 +73,7 @@ void detecting(void* pvParameters) {
   (void) pvParameters;
   
   while(1) {
-    while(digitalRead(sensor1) == LOW || digitalRead(sensor2) == LOW) {
+    while(digitalRead(sensor1) == LOW  || digitalRead(sensor2) == LOW){
       detected = true;
     }
       detected = false;
