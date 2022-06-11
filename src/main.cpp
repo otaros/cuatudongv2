@@ -54,11 +54,11 @@ void door_state_checking(void* pvParameters) {
   
   while(1) {
     int distance = calculate_distance();
-    switch (distance) {
+    switch (distance*1000) {
       case 0 ... 4:
         closed = true;
         break;
-      case MAX_DISTANCE ... 1000:
+      case MAX_DISTANCE*1000 ... 1000000:
         fully_openned = true;
         break;
       default:
