@@ -105,6 +105,7 @@ begincycle:
               Serial.println("Something is detected");
               goto begincycle;
         }};
+        vTaskDelay(500 / portTICK_PERIOD_MS);                     //delay for completling the closing
         stop();
         Serial.println("Door is closed");
       }else {
