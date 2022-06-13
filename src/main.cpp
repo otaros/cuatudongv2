@@ -5,8 +5,8 @@
 
 #define sensor1               2
 #define sensor2               3
-#define IN1	                  6
-#define IN2	                  7
+#define IN1	              6
+#define IN2	              7
 #define ENA                   8
 #define TRIG                  9
 #define ECHO                  10
