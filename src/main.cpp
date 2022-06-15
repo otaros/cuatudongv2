@@ -5,8 +5,8 @@
 
 #define sensor1               2
 #define sensor2               3
-#define IN1	              6
-#define IN2	              7
+#define IN1	                  6
+#define IN2	                  7
 #define ENA                   8
 #define TRIG                  9
 #define ECHO                  10
@@ -25,7 +25,7 @@ void stop();
 int calculate_distance();
 
 volatile bool closed = false;
-volatile bool fully_openned = false;
+volatile bool opened = false;
 volatile bool detected = false;
 
 void setup() { 
@@ -59,11 +59,11 @@ void door_state_checking(void* pvParameters) {
         closed = true;
         break;
       case MAX_DISTANCE ... 1000:
-        fully_openned = true;
+        opened = true;
         break;
       default:
         closed = false;
-        fully_openned = false;
+        opened = false;
         break;
     }
   }
@@ -90,7 +90,7 @@ begincycle:
     if(detected){
       open_door(SPEED);
       Serial.println("Door is opening");
-      while(!fully_openned);
+      while(!opened);
       stop();
       Serial.println("Door is opened");
     }
@@ -105,7 +105,7 @@ begincycle:
               Serial.println("Something is detected");
               goto begincycle;
         }};
-        vTaskDelay(500 / portTICK_PERIOD_MS);                     //delay for completling the closing
+        vTaskDelay(500 / portTICK_PERIOD_MS);                     //delay for completely closed
         stop();
         Serial.println("Door is closed");
       }else {
